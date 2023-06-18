@@ -4,7 +4,7 @@
       <div class="bar" :style="{ width: `${(questionsAnswered / questions.length) * 100}%` }"></div>
 
       <div class="status">
-        {{ questionsAnswered }} out of {{ questions.length }} questions answered
+        {{ questionsAnswered }} de {{ questions.length }} perguntas respondidas
       </div>
     </div>
 
@@ -37,11 +37,6 @@ export default {
   props: ['questions', 'questionsAnswered'],
   emits: ['question-answered'],
   name: 'questions',
-  data () {
-    return {
-      
-    }
-  },
   methods: {
     selectAnswer (is_correct: boolean): void {
       this.$emit('question-answered', is_correct)
@@ -49,5 +44,3 @@ export default {
   }
 }
 </script>
-
-<style></style>

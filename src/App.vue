@@ -7,9 +7,16 @@
       @question-answered="questionAnswered"
     />
 
-    <result v-else />
+    <result v-else :results="results" :totalCorrect="totalCorrect" />
 
-    <button type="button" class="reset-btn">Reset</button>
+    <button 
+      type="button" 
+      class="reset-btn" 
+      @click.prevent="reset" 
+      v-if="questionsAnswered === questions.length"
+    >
+      Reiniciar
+    </button>
   </div>
 </template>
 
@@ -31,7 +38,7 @@ export default {
       totalCorrect: 0,
       questions: [
         {
-          q: 'What is 2 + 2?', 
+          q: 'Quanto é 2 + 2?', 
           answers: [
             {
               text: '4',
@@ -42,7 +49,7 @@ export default {
               is_correct: false 
             },
             {
-              text: 'Fish',
+              text: '8',
               is_correct: false 
             },
             {
@@ -52,7 +59,7 @@ export default {
           ] 
         },
         { 
-          q: 'How many letters are in the word "Banana"?', 
+          q: 'Quantas letras tem a palavra "Banana"?', 
           answers: [
             {
               text: '5',
@@ -73,7 +80,7 @@ export default {
           ] 
         },
         { 
-          q: 'Find the missing letter: C_ke', 
+          q: 'Encontre a letra faltando: B_lo', 
           answers: [
             {
               text: 'e',
@@ -81,11 +88,15 @@ export default {
             },
             {
               text: 'a',
-              is_correct: true 
+              is_correct: false 
             },
             {
               text: 'i',
               is_correct: false 
+            },
+            {
+              text: 'o',
+              is_correct: true 
             }
           ] 
         },
@@ -94,14 +105,14 @@ export default {
         {
           min: 0,
           max: 2,
-          title: "Try again!",
-          desc: "Do a little more studying and you may succeed!"
+          title: "Tente novamente!",
+          desc: "Com um pouco mais de esforço você conseguirá!"
         },
         {
           min: 3,
           max: 3,
-          title: "Wow, you're a genius!",
-          desc: "Studying has definitely paid off for you!"
+          title: "Muito bem!",
+          desc: "Você realmente é muito inteligente!"
         }
       ]
     }
@@ -110,6 +121,10 @@ export default {
     questionAnswered (is_correct: boolean): void {
       if (is_correct) this.totalCorrect++
       this.questionsAnswered++
+    },
+    reset (): void {
+      this.questionsAnswered = 0
+      this.totalCorrect = 0
     }
   }
 }

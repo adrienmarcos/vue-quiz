@@ -108,12 +108,16 @@ body {
 } 
 .reset-btn {
   background-color: #ff6372;
-    border: 0;
-    font-size: 22px;
-    color: #fff;
-    padding: 10px 25px;
-    margin: 10px auto;
-    display: block;
+  border: 0;
+  font-size: 22px;
+  color: #fff;
+  padding: 10px 25px;
+  margin: 10px auto;
+  display: block;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 .result{ 
   width: 100%;
